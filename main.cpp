@@ -1,58 +1,53 @@
 //
 //  main.cpp
-//  Hello World
+//  Math
 //
-//  Created by Emanuel Clur on 6/8/18.
+//  Created by inky on 7/8/18.
 //  Copyright © 2018 MateMagician. All rights reserved.
 //
 
 #include <iostream>
-namespace clur {
-    /*template<typename T, std::size_t t_size = 1>
-    class BaseVector {
-        typedef T                       value_type;
-        typedef T*                      collection;
-        typedef std::size_t             this_size;
-        typedef std::size_t             size;
-        this_size static_size = 5;
-        collection v;
-        size it = 0;
+#include <string>
+#define interface struct
+#define implement public
+
+interface IMath {
+    virtual void solve() = 0;
+    virtual void isdigit() = 0;
+    virtual void isletter() = 0;
+};
+
+interface IEquation : implement IMath {
+    virtual void kind() = 0;
+    virtual void solve() = 0;
+};
+
+class Cuadratic : implement IEquation {
+    typedef std::string equation;
+    equation eq;
+    void isdigit() {
         
-    private:
-        BaseVector() {
-            v[it] = (value_type*)malloc(sizeof(value_type));
-            ++it;
-        }
+    }
+    void isletter() {
         
-    };*/
-    template<typename T>
-    class vector {
-        typedef int             iterator;
-        typedef T               vector_type;
-        typedef vector<T>       this_type;
-        vector_type* v;
-        iterator it = -1;
-        uint count = 0;
-        template <typename ... Type>
-        uint countFoldExpressions(Type ... a){
-            auto val = []([a ...](){
-                return (a and ...);
-            };
-            return count;
+    }
+public:
+    Cuadratic(equation e): eq(e) {  }
+    ~Cuadratic() = default;
+    void kind() {
+        for (auto i = 0; i < eq.size(); ++i) {
+            (eq[i] == '0' or eq[i] == '1' or eq[i] == '2' or eq[i] == '3' or eq[i] == '4'
+             or eq[i] == '5' or eq[i] == '6' or eq[i] == '7' or eq[i] == '8' or eq[i] == '9')?
+            isdigit() : isletter();
         }
-    public:
-        vector() {
-            ++it;
-            v[it] = (vector_type*)malloc(sizeof(vector_type));
-        }
-        template<typename ... args>
-        vector(args ... arg) {
-            v = (vector_type*)malloc(countFoldExpressions(arg ...) * sizeof...(arg));
-        }
-    };
-}
+    }
+    void solve() {
+        
+    }
+};
 
 int main(int argc, const char * argv[]) {
-    clur::vector<int> v(3,4,5,6,7,8);
+    // insert code here...
+    std::cout << "Hello, World!\n";
     return 0;
 }
